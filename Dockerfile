@@ -13,15 +13,14 @@ ENV LANG="ja_JP.UTF-8" \
     LC_ALL="ja_JP.UTF-8"
 
 COPY wrapper_script.sh /
-
 RUN chmod 755 wrapper_script.sh
 
 # test
 # 擬似的にマウントされたディレクトリ扱い
-WORKDIR /data/test/
-COPY /test_data/*.csv ./
+# WORKDIR /data/test/
+# COPY /test_data/*.csv ./
 
-# RUN mkdir /data/
+RUN mkdir /data/
 RUN chmod 777 /data/
 
 CMD /wrapper_script.sh
