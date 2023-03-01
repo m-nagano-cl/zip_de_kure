@@ -1,0 +1,14 @@
+substitutions:
+  # Artifact RegistryのRegion
+  _LOCATION: asia-northeast1
+  # Artifact Registryをリポジトリ名
+  _REPOSITORY: bizoope
+  # Artifact RegistryにPushする際のイメージ名
+  _IMAGE: zip_de_kure
+
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: [ 'build', '-t', '$_LOCATION-docker.pkg.dev/$PROJECT_ID/$_REPOSITORY/$_IMAGE:$COMMIT_SHA', '-t', '$_LOCATION-docker.pkg.dev/$PROJECT_ID/$_REPOSITORY/$_IMAGE:latest', '.' ]
+images:
+- '$_LOCATION-docker.pkg.dev/$PROJECT_ID/$_REPOSITORY/$_IMAGE:$COMMIT_SHA'
+- '$_LOCATION-docker.pkg.dev/$PROJECT_ID/$_REPOSITORY/$_IMAGE:latest'
